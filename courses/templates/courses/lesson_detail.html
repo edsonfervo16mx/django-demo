@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{lesson.title}} - {{lesson.course.title}}
+{% endblock %}
+
+{% block content %}
+<article>
+    <h2>{{lesson.course.title}}</h2>
+    <h3>{{lesson.title}}</h3>
+    {{lesson.description|linebreaks}}
+</article>
+{% endblock %}

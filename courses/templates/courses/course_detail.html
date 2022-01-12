@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}{{course.title}}{% endblock %}
+{% block content %}
+<article>
+    <h2>{{course.title}}</h2>
+    {{course.description}}
+
+    <section>
+        {% for lesson in course.lesson_set.all %}
+            <h3>{{lesson.title}}</h3>
+            {{lesson.description}}
+        {% endfor %}
+    </section>
+
+</article>
+{% endblock %}
