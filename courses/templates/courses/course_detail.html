@@ -3,12 +3,17 @@
 {% block title %}{{course.title}}{% endblock %}
 {% block content %}
 <article>
-    <h2>{{course.title}}</h2>
+    <h2>
+        <a href="{% url 'courses:detail' pk=course.pk %}">{{course.title}}</a>
+    </h2>
     {{course.description}}
 
     <section>
         {% for lesson in course.lesson_set.all %}
-            <h3>{{lesson.title}}</h3>
+        <h3>
+            <a href="{% url 'courses:lesson' course_pk=lesson.course.pk lesson_pk=lesson.pk %}">{{lesson.title}}</a>
+        </h3>
+
             {{lesson.description}}
         {% endfor %}
     </section>
