@@ -12,5 +12,9 @@
     <h3>{{lesson.title}}</h3>
     {{lesson.description|linebreaks}}
     {{lesson.content|linebreaks}}
+
+    {% with content=lesson.content %}
+    {{content|linebreaks}} Contenido: {{ content|wordcount }}
+    {% endwith%}
 </article>
 {% endblock %}

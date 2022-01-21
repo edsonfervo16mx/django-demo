@@ -1,12 +1,10 @@
 {% extends 'layout.html' %}
-
+{% load static from static %}
+{% block static %}
+<link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
+{% endblock %}
 {% block title %} Cursos disponibles {% endblock %}
-
 {% block content %}
-
-<div class="cards">
-
-</div>
 
 {% for course in courses %}
     <div class="card">
@@ -16,11 +14,23 @@
             </a>
         </header>
         <div class="card-copy">
-            {{course.description}}
+            {% if course.description|wordcount <= 5 %}
+                {{course.description}}
+            {% else %}
+                {{course.description|truncatewords:5}}
+                <a href="{% url 'courses:detail' pk=ourse.pk %}">leer mas</a>
+            {% endif %}
+            <div>
+                Creado el: {{ course.created_at|date:"d-m-y" }}
+            </div>
         </div>
     </div>
 {% endfor %}
-
+    <div>
+        Contacto:
+        <a href="mailto:{{ email }}">Correo</a> <br/>
+        {{ email|urlize }}
+    </div>
 
 {% endblock %}
 

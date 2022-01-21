@@ -7,9 +7,10 @@ from .models import Course, Lesson
 # Create your views here.
 def course_list(request):
     courses = Course.objects.all()
+    email = 'e.ventura@caribbeandigitalgroup.com'
     # response = ', '.join([str(course) for course in courses])
     # return HttpResponse(response)
-    return render(request, 'courses/course_list.html', {'courses': courses})
+    return render(request, 'courses/course_list.html', {'courses': courses, 'email':email})
 
 
 def course_detail(request,pk):
