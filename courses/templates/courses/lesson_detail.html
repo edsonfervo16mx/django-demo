@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% load course_extras %}
 
 {% block title %}
 {{lesson.title}} - {{lesson.course.title}}
@@ -14,7 +15,9 @@
     {{lesson.content|linebreaks}}
 
     {% with content=lesson.content %}
-    {{content|linebreaks}} Contenido: {{ content|wordcount }}
+        {{content|linebreaks}}
+        Contenido: {{ content|wordcount }} palabras.
+        Tiempo estimado: {{ content|wordcount|time_estimate }} minuto{{content|wordcount|time_estimate|pluralize}}.
     {% endwith%}
 </article>
 {% endblock %}
