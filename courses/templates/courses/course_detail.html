@@ -1,17 +1,18 @@
 {% extends "layout.html" %}
-{% load humanize %}
+{% load humanize course_extras %}
 {% block title %}{{course.title}}{% endblock %}
 {% block content %}
 <article>
     <h2>
         <a href="{% url 'courses:detail' pk=course.pk %}">{{course.title}}</a>
     </h2>
-    {{course.description}}
+    {{course.description|markdown_to_html|safe}}
 
     <p>
         Hay <strong> {{ course.lesson_set.count|apnumber }} </strong> leccion{{ course.lesson_set.count|pluralize:"es" }} en este curso: {{ course.lesson_set.all|join:", " }}
     </p>
 
+    <hr/>
     <section>
         {% for lesson in course.lesson_set.all %}
         <h3>
@@ -19,6 +20,7 @@
         </h3>
 
             {{lesson.description}}
+            {{lesson.content|markdown_to_html|safe}}
         {% endfor %}
     </section>
 
